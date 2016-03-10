@@ -1,0 +1,6 @@
+\\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\bin\Debug\LRRMapExpander.exe.config
+\\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\bin\Debug\LRRMapExpander.exe
+\\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\bin\Debug\LRRMapExpander.pdb
+\\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.csprojResolveAssemblyReference.cache
+\\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.exe
+\\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.pdb

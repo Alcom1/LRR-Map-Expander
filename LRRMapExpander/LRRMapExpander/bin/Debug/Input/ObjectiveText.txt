@@ -1,0 +1,5 @@
+[CustomLevel]
+Objective:			This is your objective.
+Failure:			You failed your mission.
+Completion:			Mission complete!
+CrystalFailure:			You did not collect enough Energy Crystals! Mission failure.
