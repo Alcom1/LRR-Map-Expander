@@ -26,37 +26,28 @@ namespace LRRMapExpander
         public LRRMapHandlerExpand()
         {
             Directory.CreateDirectory("Output//");
-            reader = new BinaryReader(File.Open("Input\\surf.map", FileMode.Open));
-            writer = new BinaryWriter(File.Open("Output\\Surf.map", FileMode.Create));
-        }
-
-        //Paramaterized Constructor
-        //Initializes a new instance of LRRMapHandlerExpand with specified I/O locations.
-        public LRRMapHandlerExpand(string _inPlace, string _outPlace, string _inName, ushort _block)
-        {
-            Directory.CreateDirectory(_outPlace);
-            reader = new BinaryReader(File.Open(_inPlace + _inName, FileMode.Open));
-            writer = new BinaryWriter(File.Open(_outPlace + _inName, FileMode.Create));
-            block = _block;
         }
 
         //Sets the size by which to increase values.
-        public void setBorder(int _x_expand, int _y_expand)
+        public void SetBorder(int _x_expand, int _y_expand)
         {
             x_expand = _x_expand;
             y_expand = _y_expand;
         }
 
         //Sets the I/O locations and block content.
-        public void setIOPB(string _inPlace, string _outPlace, string _inName, ushort _block)
+        public void SetIOB(string _inName, string _outName, ushort _block)
         {
-            reader.Close();
-            writer.Close();
-            Directory.CreateDirectory(_outPlace);
+            if(reader != null)
+                reader.Close();
+
+            if (writer != null)
+                writer.Close();
+
             try
             {
-                reader = new BinaryReader(File.Open(_inPlace + _inName, FileMode.Open));
-                writer = new BinaryWriter(File.Open(_outPlace + _inName, FileMode.Create));
+                reader = new BinaryReader(File.Open(_inName, FileMode.Open));
+                writer = new BinaryWriter(File.Open("Output//" + _outName, FileMode.Create));
             }
             catch (FileNotFoundException ex)
             {
@@ -67,7 +58,7 @@ namespace LRRMapExpander
 
         //Gets the header of the orignal .map file.
         //Gets the width (x_res) and height (y_res) of the original .map file.
-        public bool grabHeader()
+        public bool GrabHeader()
         {
             //Read .map file.
             for (int i = 0; i < header.GetLength(0); ++i)
@@ -98,7 +89,7 @@ namespace LRRMapExpander
 
         //Resizes the content matrix based on the width and height of the .map file.
         //Puts the contents of the .map file into the content matrix.
-        public void grabContent()
+        public void GrabContent()
         {
             content = new ushort[y_res, x_res];
             for (int j = 0; j < y_res; ++j)
@@ -114,7 +105,7 @@ namespace LRRMapExpander
 
         //Resizes the newContent matrix based on the width and height of the .map file and the size of the border expansion.
         //Fills the newContent matrix.
-        public void modContent()
+        public void ModContent()
         {
             newContent = new ushort[y_res + y_expand * 2, x_res + x_expand * 2];                //2-dimensional content.
             ushort[] newContentX = new ushort[(y_res + y_expand * 2) * (x_res + x_expand * 2)]; //1-dimensional content.
@@ -177,7 +168,7 @@ namespace LRRMapExpander
         }
 
         //Heightmatch.
-        public void modContentHeightMatch()
+        public void ModContentHeightMatch()
         {
             // HeightMatch top section.
             for (int j = 0; j < y_expand; ++j)
@@ -217,7 +208,7 @@ namespace LRRMapExpander
         }
 
         //Outputs the contents of newContents as a new .map file.
-        public void spitContent()
+        public void SpitContent()
         {
             //Write header.
             header[8] = (byte)(header[8] + x_expand * 2);

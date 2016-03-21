@@ -4,3 +4,9 @@
 \\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.csprojResolveAssemblyReference.cache
 \\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.exe
 \\banner.main.ad.rit.edu\students\acb8570\IGMProfile\Desktop\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.pdb
+C:\Users\Alcom\Desktop\Dev\Git\LRR-Map-Expander\LRRMapExpander\LRRMapExpander\bin\Debug\LRRMapExpander.exe.config
+C:\Users\Alcom\Desktop\Dev\Git\LRR-Map-Expander\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.exe
+C:\Users\Alcom\Desktop\Dev\Git\LRR-Map-Expander\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.pdb
+C:\Users\Alcom\Desktop\Dev\Git\LRR-Map-Expander\LRRMapExpander\LRRMapExpander\bin\Debug\LRRMapExpander.exe
+C:\Users\Alcom\Desktop\Dev\Git\LRR-Map-Expander\LRRMapExpander\LRRMapExpander\bin\Debug\LRRMapExpander.pdb
+C:\Users\Alcom\Desktop\Dev\Git\LRR-Map-Expander\LRRMapExpander\LRRMapExpander\obj\Debug\LRRMapExpander.csprojResolveAssemblyReference.cache

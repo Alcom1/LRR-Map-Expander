@@ -12,17 +12,45 @@ namespace LRRMapExpander
     {
         StreamReader reader;
         StreamWriter writer;
-        //int x_expand;                       //Thickness of vertical border. Distance to expand x-dimension.
-        //int y_expand;                       //Thickness of horizontal border. Distance to expand y-dimension.
+        int x_expand;           //Thickness of vertical border. Distance to expand x-dimension.
+        int y_expand;           //Thickness of horizontal border. Distance to expand y-dimension.
 
-        public LRROlHandlerExpand(string _inPlace, string _outPlace, string _inName)
+        //Default Constructor
+        //Initializes a new instance of LRROlHandlerExpand
+        public LRROlHandlerExpand()
         {
-            Directory.CreateDirectory(_outPlace);
-            reader = new StreamReader(File.Open(_inPlace + _inName, FileMode.Open));
-            writer = new StreamWriter(File.Open(_outPlace + _inName, FileMode.Create));
+            Directory.CreateDirectory("Output//");
         }
 
-        public void Action(int x_expand, int y_expand)
+        //Sets the size by which to increase values.
+        public void SetBorder(int _x_expand, int _y_expand)
+        {
+            x_expand = _x_expand;
+            y_expand = _y_expand;
+        }
+
+        //Sets the I/O locations.
+        public void SetIO(string _inName, string _outName)
+        {
+            if (reader != null)
+                reader.Close();
+
+            if (writer != null)
+                writer.Close();
+
+            try
+            {
+                reader = new StreamReader(File.Open(_inName, FileMode.Open));
+                writer = new StreamWriter(File.Open("Output//" + _outName, FileMode.Create));
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        //Expand the size of the OL file
+        public void ExpandContent()
         {
             String inquiry;                         //Line of Ol file being read.
             Regex whiteSpace = new Regex("[ \t]");  //WhiteSpace regex for 
