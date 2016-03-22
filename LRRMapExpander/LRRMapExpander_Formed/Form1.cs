@@ -25,12 +25,21 @@ namespace LRRMapExpander_Formed
             mapHandler = new LRRMapHandlerExpand(textBox_output);  //Expander for map files
             olHandler = new LRROlHandlerExpand(textBox_output);    //Expander for ol file(s)
             args = _args;
+
+            textBox_output.AppendText("Finding files." + Environment.NewLine);
+            for (int i = 0; i < args.Length; i++)
+            {
+                if(File.Exists(args[i]))
+                    textBox_output.AppendText(Path.GetFileName(args[i]) + " found" + Environment.NewLine);
+            }
+            textBox_output.AppendText(Environment.NewLine);
+            textBox_output.AppendText("Enter values and press the 'Expand' button to proceed." + Environment.NewLine);
+            textBox_output.AppendText(Environment.NewLine);
         }
 
         //Perform map expansion exporting.
         private void Expand(object sender, EventArgs e)
         {
-            //Test logs.
             textBox_output.AppendText("Performing Expansion." + Environment.NewLine);
             textBox_output.AppendText(Environment.NewLine);
 
@@ -81,6 +90,9 @@ namespace LRRMapExpander_Formed
                         break;
                 }
             }
+
+            textBox_output.AppendText("Expansion complete." + Environment.NewLine);
+            textBox_output.AppendText(Environment.NewLine);
         }
 
         //Set the x_expand to the current x_expand boxes's value.
