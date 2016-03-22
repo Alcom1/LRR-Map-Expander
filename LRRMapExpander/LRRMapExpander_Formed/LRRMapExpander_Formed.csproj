@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C17DDB8-00AC-498C-90F7-394B3CBE1200}</ProjectGuid>
+    <ProjectGuid>{70D1C004-D611-4959-8E8D-F8FC67BB2702}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LRRMapExpander_Formed</RootNamespace>
