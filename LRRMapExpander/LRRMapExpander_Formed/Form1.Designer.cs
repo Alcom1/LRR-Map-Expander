@@ -56,6 +56,7 @@
             this.textBox_x.Name = "textBox_x";
             this.textBox_x.Size = new System.Drawing.Size(100, 20);
             this.textBox_x.TabIndex = 1;
+            this.textBox_x.Text = "0";
             this.textBox_x.TextChanged += new System.EventHandler(this.Change_X_expand);
             // 
             // textBox_y
@@ -66,6 +67,7 @@
             this.textBox_y.Name = "textBox_y";
             this.textBox_y.Size = new System.Drawing.Size(100, 20);
             this.textBox_y.TabIndex = 2;
+            this.textBox_y.Text = "0";
             this.textBox_y.TextChanged += new System.EventHandler(this.Change_Y_expand);
             // 
             // label_x
@@ -103,14 +105,14 @@
             this.textBox_output.Name = "textBox_output";
             this.textBox_output.ReadOnly = true;
             this.textBox_output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_output.Size = new System.Drawing.Size(360, 92);
+            this.textBox_output.Size = new System.Drawing.Size(360, 322);
             this.textBox_output.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 182);
+            this.ClientSize = new System.Drawing.Size(384, 412);
             this.Controls.Add(this.textBox_output);
             this.Controls.Add(this.label_y);
             this.Controls.Add(this.label_x);
