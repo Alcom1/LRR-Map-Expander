@@ -34,6 +34,8 @@
             this.label_x = new System.Windows.Forms.Label();
             this.label_y = new System.Windows.Forms.Label();
             this.textBox_output = new System.Windows.Forms.TextBox();
+            this.checkBox_match = new System.Windows.Forms.CheckBox();
+            this.label_match = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_expand
@@ -98,19 +100,42 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_output.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_output.Location = new System.Drawing.Point(12, 71);
+            this.textBox_output.Location = new System.Drawing.Point(12, 97);
             this.textBox_output.Multiline = true;
             this.textBox_output.Name = "textBox_output";
             this.textBox_output.ReadOnly = true;
             this.textBox_output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_output.Size = new System.Drawing.Size(360, 322);
+            this.textBox_output.Size = new System.Drawing.Size(360, 296);
             this.textBox_output.TabIndex = 5;
+            // 
+            // checkBox_match
+            // 
+            this.checkBox_match.AutoSize = true;
+            this.checkBox_match.Location = new System.Drawing.Point(145, 69);
+            this.checkBox_match.Name = "checkBox_match";
+            this.checkBox_match.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_match.TabIndex = 6;
+            this.checkBox_match.UseVisualStyleBackColor = true;
+            // 
+            // label_match
+            // 
+            this.label_match.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_match.AutoSize = true;
+            this.label_match.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_match.Location = new System.Drawing.Point(56, 69);
+            this.label_match.Name = "label_match";
+            this.label_match.Size = new System.Drawing.Size(87, 13);
+            this.label_match.TabIndex = 7;
+            this.label_match.Text = "Height Match:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 412);
+            this.Controls.Add(this.label_match);
+            this.Controls.Add(this.checkBox_match);
             this.Controls.Add(this.textBox_output);
             this.Controls.Add(this.label_y);
             this.Controls.Add(this.label_x);
@@ -133,6 +158,8 @@
         private System.Windows.Forms.Label label_x;
         private System.Windows.Forms.Label label_y;
         private System.Windows.Forms.TextBox textBox_output;
+        private System.Windows.Forms.CheckBox checkBox_match;
+        private System.Windows.Forms.Label label_match;
     }
 }
 

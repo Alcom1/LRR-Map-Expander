@@ -88,7 +88,7 @@ namespace LRRMapExpander_Formed
             for (int i = 0; i < args.Length; ++i)
             {
                 //Different actions for different extensions
-                switch (Path.GetExtension(args[i]))
+                switch (Path.GetExtension(args[i]).ToLower())
                 {
                     case ".map":
                         if(!mapHandler.SetIO(args[i], Path.GetFileName(args[i])))
@@ -99,7 +99,7 @@ namespace LRRMapExpander_Formed
                         }
 
                         //Special default blocks.
-                        switch (Path.GetFileName(args[i]))
+                        switch (Path.GetFileName(args[i]).ToLower())
                         {
                             case "high.map":
                                 mapHandler.SetB(8); //Special default block fo height maps.
@@ -116,10 +116,13 @@ namespace LRRMapExpander_Formed
                         mapHandler.GrabHeader();
                         mapHandler.GrabContent();
                         mapHandler.ModContent();
-
+                        
                         //Hight Match
-                        if (Path.GetFileName(args[i]) == "surf.map")
+                        if (Path.GetFileName(args[i]).ToLower() == "high.map" && checkBox_match.Checked)
+                        {
+                            textBox_output.AppendText("Performing height match on " + Path.GetFileName(args[i]) + Environment.NewLine);
                             mapHandler.ModContentHeightMatch();
+                        }
 
                         //Output
                         mapHandler.SpitContent();
