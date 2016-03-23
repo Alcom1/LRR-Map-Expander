@@ -27,10 +27,17 @@ namespace LRRMapExpander_Formed
             args = _args;
 
             textBox_output.AppendText("Finding files." + Environment.NewLine);
-            for (int i = 0; i < args.Length; i++)
+            if (args.Length > 0)
             {
-                if(File.Exists(args[i]))
-                    textBox_output.AppendText("Found: " + Path.GetFileName(args[i]) + Environment.NewLine);
+                for (int i = 0; i < args.Length; i++)
+                {
+                    if (File.Exists(args[i]))
+                        textBox_output.AppendText("Found: " + Path.GetFileName(args[i]) + Environment.NewLine);
+                }
+            }
+            else
+            {
+                textBox_output.AppendText("No files found." + Path.GetFileName(args[i]) + Environment.NewLine);
             }
             textBox_output.AppendText(Environment.NewLine);
             textBox_output.AppendText("Enter values and press the 'Expand' button to proceed." + Environment.NewLine);
