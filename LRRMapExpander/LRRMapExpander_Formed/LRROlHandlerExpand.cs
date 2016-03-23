@@ -33,7 +33,7 @@ namespace LRRMapExpander_Formed
         }
 
         //Sets the I/O locations.
-        public void SetIO(string _inName, string _outName)
+        public bool SetIO(string _inName, string _outName)
         {
             if (reader != null)
                 reader.Close();
@@ -46,10 +46,12 @@ namespace LRRMapExpander_Formed
                 reader = new StreamReader(File.Open(_inName, FileMode.Open));
                 writer = new StreamWriter(File.Open("Output//" + _outName, FileMode.Create));
             }
-            catch (FileNotFoundException ex)
+            catch (Exception ex)
             {
                 textBox_output.AppendText(ex.Message + Environment.NewLine);
+                return false;
             }
+            return true;
         }
 
         //Expand the size of the OL file

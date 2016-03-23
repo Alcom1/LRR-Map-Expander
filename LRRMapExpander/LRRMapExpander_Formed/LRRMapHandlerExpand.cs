@@ -39,7 +39,7 @@ namespace LRRMapExpander_Formed
         }
 
         //Sets the I/O locations and block content.
-        public void SetIOB(string _inName, string _outName, ushort _block)
+        public bool SetIO(string _inName, string _outName)
         {
             if(reader != null)
                 reader.Close();
@@ -52,10 +52,17 @@ namespace LRRMapExpander_Formed
                 reader = new BinaryReader(File.Open(_inName, FileMode.Open));
                 writer = new BinaryWriter(File.Open("Output//" + _outName, FileMode.Create));
             }
-            catch (FileNotFoundException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                textBox_output.AppendText(ex.Message + Environment.NewLine);
+                return false;
             }
+            return true;
+        }
+
+        //Sets the block content.
+        public void SetB(ushort _block)
+        {
             block = _block;
         }
 
@@ -67,7 +74,6 @@ namespace LRRMapExpander_Formed
             for (int i = 0; i < header.GetLength(0); ++i)
             {
                 header[i] = reader.ReadByte();
-                //Console.Write("[{0:X}]", header[i]); //Displays Header
             }
 
             //Validate .map file.
@@ -100,9 +106,7 @@ namespace LRRMapExpander_Formed
                 for (int i = 0; i < x_res; ++i)
                 {
                     content[j, i] = reader.ReadUInt16();
-                    //Console.Write("[{0:D}]", content[j, i]); //Displays Map Content.
                 }
-                //Console.Write("\n"); //Organizes rows of Map Content.
             }
         }
 

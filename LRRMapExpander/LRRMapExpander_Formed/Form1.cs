@@ -30,7 +30,7 @@ namespace LRRMapExpander_Formed
             for (int i = 0; i < args.Length; i++)
             {
                 if(File.Exists(args[i]))
-                    textBox_output.AppendText(Path.GetFileName(args[i]) + " found" + Environment.NewLine);
+                    textBox_output.AppendText("Found: " + Path.GetFileName(args[i]) + Environment.NewLine);
             }
             textBox_output.AppendText(Environment.NewLine);
             textBox_output.AppendText("Enter values and press the 'Expand' button to proceed." + Environment.NewLine);
@@ -40,8 +40,45 @@ namespace LRRMapExpander_Formed
         //Perform map expansion exporting.
         private void Expand(object sender, EventArgs e)
         {
+            try
+            {
+                x_expand = int.Parse(textBox_x.Text);
+                if (x_expand < 0 || x_expand > 20)
+                {
+                    textBox_output.AppendText("Invalid value for 'Horizontal Expansion.'" + Environment.NewLine);
+                    textBox_output.AppendText("Value must be between 0 and 20." + Environment.NewLine);
+                    textBox_output.AppendText(Environment.NewLine);
+                    return;
+                }
+            }
+            catch
+            {
+                textBox_output.AppendText("Invalid value for 'Horizontal Expansion.'" + Environment.NewLine);
+                textBox_output.AppendText("Value is not an integer." + Environment.NewLine);
+                textBox_output.AppendText(Environment.NewLine);
+                return;
+            }
+
+            try
+            {
+                y_expand = int.Parse(textBox_y.Text);
+                if (y_expand < 0 || y_expand > 20)
+                {
+                    textBox_output.AppendText("Invalid value for 'Vertical Expansion.'" + Environment.NewLine);
+                    textBox_output.AppendText("Value must be between 0 and 20." + Environment.NewLine);
+                    textBox_output.AppendText(Environment.NewLine);
+                    return;
+                }
+            }
+            catch
+            {
+                textBox_output.AppendText("Invalid value for 'Vertical Expansion.'" + Environment.NewLine);
+                textBox_output.AppendText("Value is not an integer." + Environment.NewLine);
+                textBox_output.AppendText(Environment.NewLine);
+                return;
+            }
+
             textBox_output.AppendText("Performing Expansion." + Environment.NewLine);
-            textBox_output.AppendText(Environment.NewLine);
 
             //Set borders for handlers.
             mapHandler.SetBorder(x_expand, y_expand);
@@ -54,16 +91,24 @@ namespace LRRMapExpander_Formed
                 switch (Path.GetExtension(args[i]))
                 {
                     case ".map":
+                        if(!mapHandler.SetIO(args[i], Path.GetFileName(args[i])))
+                        {
+                            textBox_output.AppendText("Failed to handle file: " + Path.GetFileName(args[i]) + Environment.NewLine);
+                            textBox_output.AppendText(Environment.NewLine);
+                            break;
+                        }
+
+                        //Special default blocks.
                         switch (Path.GetFileName(args[i]))
                         {
                             case "high.map":
-                                mapHandler.SetIOB(args[i], Path.GetFileName(args[i]), 8); //Special default block fo height maps.
+                                mapHandler.SetB(8); //Special default block fo height maps.
                                 break;
                             case "surf.map":
-                                mapHandler.SetIOB(args[i], Path.GetFileName(args[i]), 1); //Special default block fo surface maps.
+                                mapHandler.SetB(1); //Special default block fo surface maps.
                                 break;
                             default:
-                                mapHandler.SetIOB(args[i], Path.GetFileName(args[i]), 0); //Default default.
+                                mapHandler.SetB(0); //Default default.
                                 break;
                         }
 
@@ -81,12 +126,22 @@ namespace LRRMapExpander_Formed
                         break;
 
                     case ".ol":
-                        olHandler.SetIO(args[i], Path.GetFileName(args[i]));
+                        if(!olHandler.SetIO(args[i], Path.GetFileName(args[i])))
+                        {
+                            textBox_output.AppendText("Failed to handle file: " + Path.GetFileName(args[i]) + Environment.NewLine);
+                            textBox_output.AppendText(Environment.NewLine);
+                            break;
+                        }
                         olHandler.ExpandContent();
                         break;
 
                     default:
-                        Pass(args[i], Path.GetFileName(args[i]));
+                        if(!Pass(args[i], Path.GetFileName(args[i]), textBox_output))
+                        {
+                            textBox_output.AppendText("Failed to handle file: " + Path.GetFileName(args[i]) + Environment.NewLine);
+                            textBox_output.AppendText(Environment.NewLine);
+                            break;
+                        }
                         break;
                 }
             }
@@ -95,66 +150,8 @@ namespace LRRMapExpander_Formed
             textBox_output.AppendText(Environment.NewLine);
         }
 
-        //Set the x_expand to the current x_expand boxes's value.
-        private void Change_X_expand(object sender, EventArgs e)
-        {
-            //Parse and set expansion value.
-            try
-            {
-                int tempX_expand = int.Parse(textBox_x.Text);
-                if(tempX_expand < 0 || tempX_expand > 20)
-                {
-                    textBox_output.AppendText("Invalid value for 'Horizontal Expansion.'" + Environment.NewLine);
-                    textBox_output.AppendText("Value must be between 0 and 20." + Environment.NewLine);
-                    textBox_output.AppendText(Environment.NewLine);
-                }
-                else
-                {
-                    textBox_output.AppendText("Valid value for 'Horizontal Expansion.'" + Environment.NewLine);
-                    textBox_output.AppendText(Environment.NewLine);
-                    x_expand = tempX_expand;
-                }
-            }
-            catch
-            {
-                //textBox_output.AppendText("Invalid value for 'Horizontal Expansion.'" + Environment.NewLine);
-                //textBox_output.AppendText("Value is not an integer." + Environment.NewLine);
-                //textBox_output.AppendText(Environment.NewLine);
-                textBox_x.Text = "0";
-            }
-        }
-
-        //Set the y_expand to the current y_expand boxes's value.
-        private void Change_Y_expand(object sender, EventArgs e)
-        {
-            //Parse and set expansion value.
-            try
-            {
-                int tempY_expand = int.Parse(textBox_y.Text);
-                if (tempY_expand < 0 || tempY_expand > 20)
-                {
-                    textBox_output.AppendText("Invalid value for 'Vertical Expansion.'" + Environment.NewLine);
-                    textBox_output.AppendText("Value must be between 0 and 20." + Environment.NewLine);
-                    textBox_output.AppendText(Environment.NewLine);
-                }
-                else
-                {
-                    textBox_output.AppendText("Valid value for 'Vertical Expansion.'" + Environment.NewLine);
-                    textBox_output.AppendText(Environment.NewLine);
-                    y_expand = tempY_expand;
-                }
-            }
-            catch
-            {
-                //textBox_output.AppendText("Invalid value for 'Vertical Expansion.'" + Environment.NewLine);
-                //textBox_output.AppendText("Value is not an integer." + Environment.NewLine);
-                //textBox_output.AppendText(Environment.NewLine);
-                textBox_y.Text = "0";
-            }
-        }
-
         //Pass a file to the output without any modifications.
-        private static void Pass(string _inName, string _outName)
+        private static bool Pass(string _inName, string _outName, TextBox textBox_output)
         {
             try
             {
@@ -170,10 +167,12 @@ namespace LRRMapExpander_Formed
                 reader.Close();
                 writer.Close();
             }
-            catch (FileNotFoundException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                textBox_output.AppendText(ex.Message + Environment.NewLine);
+                return false;
             }
+            return true;
         }
     }
 }

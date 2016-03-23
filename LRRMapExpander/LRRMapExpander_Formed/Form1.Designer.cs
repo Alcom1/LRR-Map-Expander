@@ -57,7 +57,6 @@
             this.textBox_x.Size = new System.Drawing.Size(100, 20);
             this.textBox_x.TabIndex = 1;
             this.textBox_x.Text = "0";
-            this.textBox_x.TextChanged += new System.EventHandler(this.Change_X_expand);
             // 
             // textBox_y
             // 
@@ -68,7 +67,6 @@
             this.textBox_y.Size = new System.Drawing.Size(100, 20);
             this.textBox_y.TabIndex = 2;
             this.textBox_y.Text = "0";
-            this.textBox_y.TextChanged += new System.EventHandler(this.Change_Y_expand);
             // 
             // label_x
             // 
