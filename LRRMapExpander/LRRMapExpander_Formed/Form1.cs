@@ -37,7 +37,7 @@ namespace LRRMapExpander_Formed
             }
             else
             {
-                textBox_output.AppendText("No files found." + Path.GetFileName(args[i]) + Environment.NewLine);
+                textBox_output.AppendText("No files found." + Environment.NewLine);
             }
             textBox_output.AppendText(Environment.NewLine);
             textBox_output.AppendText("Enter values and press the 'Expand' button to proceed." + Environment.NewLine);
